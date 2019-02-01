@@ -12,6 +12,7 @@ const initialState ={
 const UPDATE = 'UPDATE_STEP_ONE'
 
 export function updateEverything(name, address, city, state, zipCode){
+    console.log(name)
     return {
         type: UPDATE,
         payload: {
@@ -26,7 +27,7 @@ export function updateEverything(name, address, city, state, zipCode){
 }
 
 export default function reducer(state = initialState, action){
-    console.log('reduce me')
+    console.log('reduce me', action.payload)
     switch(action.type){
         case UPDATE:
         return Object.assign({}, state, action.payload);

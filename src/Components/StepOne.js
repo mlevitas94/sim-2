@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import updateEverything from '../ducks/reducer'
+import {updateEverything} from '../ducks/reducer'
 
 
 
@@ -59,9 +59,9 @@ class StepOne extends Component {
              value={this.state.zipCode}/>
 
              <br/>
-             <Link to='/wizard/step2'
-             onClick={()=>updateEverything()}
-             >Next</Link>
+             <Link to='/wizard/step2'><button 
+             onClick={(e)=>updateEverything(this.state.name, this.state.address,this.state.city, this.state.state, this.state.zipcode)}
+             >Next</button></Link>
 
              
 
@@ -71,13 +71,14 @@ class StepOne extends Component {
     }
 }
  function mapStateToProps(state){
-return {
-    name: state.name,
-    address: state.address,
-    city: state.city,
-    state: state.state,
-    zipCode: state.zipCode,
+    return {
+        name: state.name,
+        address: state.address,
+        city: state.city,
+        state: state.state,
+        zipCode: state.zipCode
     }
 }
+
 
 export default connect(mapStateToProps, {updateEverything})(StepOne) 

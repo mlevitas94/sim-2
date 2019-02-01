@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 
 
@@ -18,6 +19,7 @@ class StepTwo extends Component {
 
    
     render() {
+        console.log(this.props)
         
         return (
             
@@ -32,4 +34,14 @@ class StepTwo extends Component {
     }
 }
 
-export default StepTwo 
+function mapStateToProps(state){
+    return {
+        name: state.name,
+        address: state.address,
+        city: state.city,
+        state: state.state,
+        zipCode: state.zipCode,
+    }
+}
+
+export default connect(mapStateToProps)(StepTwo) 
