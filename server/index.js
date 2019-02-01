@@ -13,6 +13,8 @@ massive(process.env.CONNECTION_STRING)
 }).catch(err => console.log(err));
 
 app.get('/api/house', cr.getHouses)
+app.post('/api/house', cr.addHouse)
+app.delete('/api/house/:id', cr.deleteHouse)
 
 
 

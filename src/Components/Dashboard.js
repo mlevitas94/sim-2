@@ -11,16 +11,26 @@ class Dashboard extends Component {
         this.state = {
            houses: []
         }
+
+        this.deleteHouse=this.deleteHouse.bind(this)
     }
 
     componentDidMount(){
-        Axios.get('/api/houses')
+        Axios.get('/api/house')
         .then(res => {
-            console.log( res.body)
+            console.log( res.data)
             this.setState({
-                houses: res.body
+                houses: res.data
             })
-        })
+        }).catch((err) => console.log(err))
+    }
+
+    deleteHouse(id){
+        Axios.delete(`/api/house/${id}`)
+        .then((res) => {console.log(res)})
+        .catch(err => {console.log(err)})
+
+        this.componentDidMount()
     }
    
     render() {
@@ -28,13 +38,21 @@ class Dashboard extends Component {
        let houseList = this.state.houses.map((house, i) => {
            return (
                <House
+               className ="house"
+               id={house.id}
                key={i}
+               name={house.name}
+               address={house.address}
+               city={house.city}
+               state={house.state}
+               zipCode={house.zipcode}
+               delete={this.deleteHouse}
                />
            )
        } )
         return (
          <div>
-             Dashboard <Link to ='/wizard'>Add New Propery</Link>
+             Dashboard <Link to ='/wizard/step1'>Add New Propery</Link>
              {houseList}
     
          </div>

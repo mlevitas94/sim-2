@@ -1,40 +1,25 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react'
+import {Link, Route, Switch} from 'react-router-dom'
+import StepOne from './StepOne';
+import StepTwo from './StepTwo';
+import StepThree from './StepThree';
 
 
 
-class Wizard extends Component {
-    constructor(){
-        super()
-        this.state = {
-           name: '',
-           address: '',
-           city: '',
-           state:'',
-           zipCode: ''
-        }
-    }
-   
-    render() {
+
+export default function Wizard() {
         
-        return (
-         <div>
-             Add New Listing <Link to='/'>Cancel</Link>
-             <br/>
-             <p>Property Name</p>
-             <input value={this.state.name}/>
-             <p>Address</p>
-             <input value={this.state.address}/>
-             <p>City</p>
-             <input value={this.state.city}/>
-             <p>State</p>
-             <input value={this.state.state}/>
-             <p>Zipcode</p>
-             <input value={this.state.zipCode}/>
-             
-         </div>
+     return (
+        <div>
+            Add New Listing <Link to='/'>Cancel</Link>
+            <Switch>
+                <Route path='/wizard/step1' component={StepOne}/>
+                <Route path='/wizard/step2' component={StepTwo}/>
+                <Route path='/wizard/step3' component={StepThree}/>
+            </Switch>
+
+        </div>
         )
-    }
 }
 
-export default Wizard 
+ 
